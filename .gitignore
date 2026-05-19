@@ -37,3 +37,8 @@ poetry.lock
 
 # OS
 .DS_Store
+models/transfer_quadrotor_reduced_policies/
+results/transfer_quadrotor_reduced_training/
+results/transfer_quadrotor_full_deployment/
+rollout_traces/
+*.pyc

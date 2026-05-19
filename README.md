@@ -230,3 +230,6 @@ pre-commit run --all  # Run the hooks on all files
 
 -----
 > University of Toronto's [Dynamic Systems Lab](https://github.com/learnsyslab) / [Vector Institute for Artificial Intelligence](https://github.com/VectorInstitute)
+
+## Reduced-to-full quadrotor transfer overlay
+See [README_transfer_quadrotor_v2.md](README_transfer_quadrotor_v2.md) for the reduced-policy training and full safe-control-gym quadrotor deployment overlay.
