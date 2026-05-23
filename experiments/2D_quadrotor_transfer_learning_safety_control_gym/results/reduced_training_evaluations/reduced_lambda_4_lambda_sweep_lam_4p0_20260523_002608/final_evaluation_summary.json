@@ -1,0 +1,13 @@
+{
+  "discounted_task_return_mean": 573.436753425816,
+  "discounted_task_return_std": 31.01062704456567,
+  "discounted_train_return_mean": 569.8377528646804,
+  "discounted_train_return_std": 31.145630996345737,
+  "discounted_theta_variation_mean": 0.8997501402838803,
+  "discounted_theta_variation_std": 0.06553218074914569,
+  "theta_variation_sum_mean": 1.3217123613136854,
+  "theta_variation_sum_std": 0.07666911864183412,
+  "success_rate": 1.0,
+  "final_distance_mean": 0.03806846051811714,
+  "final_distance_std": 1.4550622794502987e-05
+}

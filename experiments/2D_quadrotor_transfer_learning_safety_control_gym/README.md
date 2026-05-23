@@ -35,29 +35,29 @@ The task is navigation in the x-z plane.
 
 The workspace used in the final experiment is
 
-\[
+$$
 x \in [-4,4], \qquad z \in [0,8].
-\]
+$$
 
 The target is
 
-\[
+$$
 (x_g,z_g)=(3,7).
-\]
+$$
 
 The training initial state distribution is
 
-\[
+$$
 x_0 \sim \mathrm{Uniform}(-3.5,-2.5),
 \qquad
 z_0 \sim \mathrm{Uniform}(0.5,1.5),
-\]
+$$
 
 and
 
-\[
+$$
 \dot{x}_0,\dot{z}_0 \sim \mathrm{Uniform}(-1,1).
-\]
+$$
 
 For final reduced evaluation and full deployment, the same fixed set of 333 initial states is used for all policies and all deployment settings. The fixed initial states are sampled in a radius-0.25 disk centered at \((-3,1)\), with velocities sampled uniformly from \([-1,1]\). The file is
 
@@ -69,43 +69,43 @@ data/eval_fixed333_start_m3_1_radius025.npy
 
 The reduced state is
 
-\[
+$$
 s_t = [x_t,\dot{x}_t,z_t,\dot{z}_t,\theta^\star_{t-1}].
-\]
+$$
 
 The normalized policy action is
 
-\[
+$$
 a_t = [a^T_t,a^\theta_t] \in [-1,1]^2.
-\]
+$$
 
 It is mapped to a thrust correction and an attitude reference by
 
-\[
+$$
 \Delta T_t = \Delta T_{\max} a^T_t,
 \qquad
 \theta^\star_t = \theta_{\max} a^\theta_t.
-\]
+$$
 
 In the reduced model, the attitude is assumed to track the command immediately:
 
-\[
+$$
 \theta_t = \theta^\star_t.
-\]
+$$
 
 The commanded total thrust is
 
-\[
+$$
 T_t = mg + \Delta T_t.
-\]
+$$
 
 The reduced translational dynamics are
 
-\[
+$$
 \ddot{x}_t = \frac{T_t}{m}\sin(\theta^\star_t),
 \qquad
 \ddot{z}_t = \frac{T_t}{m}\cos(\theta^\star_t)-g.
-\]
+$$
 
 The policy uses a fixed horizon of 600 steps.
 
@@ -113,25 +113,25 @@ The policy uses a fixed horizon of 600 steps.
 
 The task reward is
 
-\[
+$$
 r^{\mathrm{task}}_t
 = -\frac{(x_t-x_g)^2+(z_t-z_g)^2}{100}
 + 10\,\mathbf{1}\{d_t \leq 0.15\},
-\]
+$$
 
 where
 
-\[
+$$
 d_t = \sqrt{(x_t-x_g)^2+(z_t-z_g)^2}.
-\]
+$$
 
 The training reward is
 
-\[
+$$
 r^{\mathrm{train}}_t
 = r^{\mathrm{task}}_t
 - \lambda |\theta^\star_t-\theta^\star_{t-1}|.
-\]
+$$
 
 For \(\lambda=0\), the training reward is the task reward. For positive \(\lambda\), the same task reward is used, with a penalty on attitude-reference variation.
 
@@ -145,55 +145,55 @@ The tested lambda values are
 
 The reduced policy is deployed on the full safe-control-gym 2D quadrotor. The policy still outputs
 
-\[
+$$
 [\Delta T_t,\theta^\star_t].
-\]
+$$
 
 The attitude is no longer replaced by \(\theta^\star_t\). The full model has attitude dynamics. A second-order inner-loop controller is used to track \(\theta^\star_t\).
 
 The inner-loop parameters are
 
-\[
+$$
 \omega_n \in \{4,6,8,10,12\},
 \qquad
 \zeta \in \{0.3,0.4,0.7,1.0\}.
-\]
+$$
 
 The attitude reference derivative is estimated by a filtered backward difference. The controller gains are
 
-\[
+$$
 K_p = I_{yy}\omega_n^2,
 \qquad
 K_d = 2I_{yy}\zeta\omega_n.
-\]
+$$
 
 The desired attitude acceleration is
 
-\[
+$$
 \ddot{\theta}^{\mathrm{des}}_t
 = \frac{K_p(\theta^\star_t-\theta_t)+K_d(\dot{\theta}^{\star}_t-\dot{\theta}_t)}{I_{yy}}.
-\]
+$$
 
 The commanded thrust is
 
-\[
+$$
 T_t = mg + \Delta T_t.
-\]
+$$
 
 The attitude command is converted to a motor-pair thrust difference by
 
-\[
+$$
 \Delta T^{\mathrm{pair}}_t
 = \frac{I_{yy}\ddot{\theta}^{\mathrm{des}}_t\sqrt{2}}{L}.
-\]
+$$
 
 The motor-pair thrusts are
 
-\[
+$$
 T_{1,t}=\frac{1}{2}\left(T_t-\Delta T^{\mathrm{pair}}_t\right),
 \qquad
 T_{2,t}=\frac{1}{2}\left(T_t+\Delta T^{\mathrm{pair}}_t\right).
-\]
+$$
 
 The resulting motor-pair thrusts are clipped to the safe-control-gym physical action bounds. For this run, the logged bounds were approximately
 
@@ -330,3 +330,4 @@ python "$EXP\code\scripts\deploy_existing_lambda_models_full_meanstd.py" `
 ```
 
 Use the same command with `--zeta 0.3`, `--zeta 0.4`, and `--zeta 1.0`, changing the output folder to `deployment_zeta03`, `deployment_zeta04`, and `deployment_zeta1`.
+

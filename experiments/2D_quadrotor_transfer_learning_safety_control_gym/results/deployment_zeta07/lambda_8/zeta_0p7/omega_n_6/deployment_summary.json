@@ -1,0 +1,22 @@
+{
+  "lambda_penalty": 8.0,
+  "omega_n": 6.0,
+  "zeta": 0.7,
+  "n_rollouts": 333,
+  "discounted_task_return_mean": 332.5875330402629,
+  "discounted_task_return_std": 55.5946765854543,
+  "discounted_train_return_mean": 322.7427405221653,
+  "discounted_train_return_std": 55.43927224615195,
+  "discounted_theta_variation_mean": 1.2305990647621927,
+  "discounted_theta_variation_std": 0.041082393795487546,
+  "theta_variation_sum_mean": 6.119109011278933,
+  "theta_variation_sum_std": 0.1462481076302732,
+  "success_rate": 1.0,
+  "final_distance_mean": 0.153318286780667,
+  "final_distance_std": 0.02273836997159604,
+  "mean_abs_theta_tracking_error_mean": 0.12230502446468892,
+  "mean_abs_theta_tracking_error_std": 0.0037944211387805314,
+  "mean_motor_pair_clip_abs_sum_mean": 0.0,
+  "mean_motor_pair_clip_abs_sum_std": 0.0,
+  "model_dir": "C:\\Users\\rabiei\\My Research\\safe-control-gym\\models\\F3731\\reduced_lambda_8_lambda_sweep_lam_8p0_20260523_005533"
+}
