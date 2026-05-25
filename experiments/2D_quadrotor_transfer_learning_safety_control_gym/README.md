@@ -1,4 +1,4 @@
-# 2D Quadrotor Reduced-to-Full Transfer Learning in safe-control-gym
+﻿# 2D Quadrotor Reduced-to-Full Transfer Learning in safe-control-gym
 
 This folder contains the experiment files for reduced-to-full transfer learning on a 2D quadrotor navigation task using safe-control-gym for full deployment.
 
@@ -330,4 +330,18 @@ python "$EXP\code\scripts\deploy_existing_lambda_models_full_meanstd.py" `
 ```
 
 Use the same command with `--zeta 0.3`, `--zeta 0.4`, and `--zeta 1.0`, changing the output folder to `deployment_zeta03`, `deployment_zeta04`, and `deployment_zeta1`.
+
+<!-- BEST_LAMBDA_HEATMAP_START -->
+
+## Deployment choice from the lambda sweep
+
+The heatmap below selects, for each inner-loop setting, the reduced-policy lambda that gives the highest full-deployment discounted task return.
+
+The best lambda depends on the quality of the inner-loop attitude response. For low damping and slower tracking, lambda = 6 dominates. For well-damped and fast inner loops, the unconstrained policy can be tracked well enough that lambda = 0 often gives the highest return.
+
+![Best lambda by full-deployment discounted task return](figures/best_lambda_by_discounted_task_return_heatmap.png)
+
+The numerical table used to generate this figure is saved in igures/best_lambda_by_discounted_task_return.csv.
+
+<!-- BEST_LAMBDA_HEATMAP_END -->
 
