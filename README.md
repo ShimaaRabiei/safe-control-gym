@@ -231,13 +231,13 @@ pre-commit run --all  # Run the hooks on all files
 -----
 > University of Toronto's [Dynamic Systems Lab](https://github.com/learnsyslab) / [Vector Institute for Artificial Intelligence](https://github.com/VectorInstitute)
 
-## Reduced-to-full 2D quadrotor transfer learning
+## Fork-specific experiment: reduced-to-full 2D quadrotor transfer learning
 
 This fork includes an experiment on reduced-to-full transfer learning for the 2D quadrotor in safe-control-gym. A reduced-order policy is trained using a high-level action parameterized by total thrust and desired attitude, and then deployed zero-shot on the full quadrotor model through an inner-loop attitude controller.
 
 The experiment studies how adding a reference-variation penalty during reduced-model training affects full-model deployment performance under different inner-loop attitude dynamics.
 
-Detailed documentation, training commands, deployment commands, saved results, and plots are available here:
+See the detailed experiment README:
 
 [2D quadrotor transfer learning experiment](experiments/2D_quadrotor_transfer_learning_safety_control_gym/README.md)
 
@@ -248,4 +248,5 @@ The heatmap below shows the value of lambda that gives the highest full-deployme
 ![Best lambda by full-deployment discounted task return](experiments/2D_quadrotor_transfer_learning_safety_control_gym/figures/best_lambda_by_discounted_task_return_heatmap.png)
 
 The best lambda depends on the quality of the inner-loop attitude response. For low damping and slower tracking, lambda = 6 dominates. For well-damped and fast inner loops, the unconstrained policy can be tracked well enough that lambda = 0 often gives the highest return.
+
 
