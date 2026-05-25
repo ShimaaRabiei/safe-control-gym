@@ -1,4 +1,4 @@
-# safe-control-gym
+﻿# safe-control-gym
 
 Physics-based CartPole and Quadrotor [Gym](https://gym.openai.com) environments (using [PyBullet](https://pybullet.org/wordpress/)) with symbolic *a priori* dynamics (using [CasADi](https://web.casadi.org)) for **learning-based control**, and model-free and model-based **reinforcement learning** (RL).
 
@@ -231,5 +231,21 @@ pre-commit run --all  # Run the hooks on all files
 -----
 > University of Toronto's [Dynamic Systems Lab](https://github.com/learnsyslab) / [Vector Institute for Artificial Intelligence](https://github.com/VectorInstitute)
 
-## Reduced-to-full quadrotor transfer overlay
-See [README_transfer_quadrotor_v2.md](README_transfer_quadrotor_v2.md) for the reduced-policy training and full safe-control-gym quadrotor deployment overlay.
+## Reduced-to-full 2D quadrotor transfer learning
+
+This fork includes an experiment on reduced-to-full transfer learning for the 2D quadrotor in safe-control-gym. A reduced-order policy is trained using a high-level action parameterized by total thrust and desired attitude, and then deployed zero-shot on the full quadrotor model through an inner-loop attitude controller.
+
+The experiment studies how adding a reference-variation penalty during reduced-model training affects full-model deployment performance under different inner-loop attitude dynamics.
+
+Detailed documentation, training commands, deployment commands, saved results, and plots are available here:
+
+[2D quadrotor transfer learning experiment](experiments/2D_quadrotor_transfer_learning_safety_control_gym/README.md)
+
+### Summary result
+
+The heatmap below shows the value of lambda that gives the highest full-deployment discounted task return for each inner-loop setting.
+
+![Best lambda by full-deployment discounted task return](experiments/2D_quadrotor_transfer_learning_safety_control_gym/figures/best_lambda_by_discounted_task_return_heatmap.png)
+
+The best lambda depends on the quality of the inner-loop attitude response. For low damping and slower tracking, lambda = 6 dominates. For well-damped and fast inner loops, the unconstrained policy can be tracked well enough that lambda = 0 often gives the highest return.
+
